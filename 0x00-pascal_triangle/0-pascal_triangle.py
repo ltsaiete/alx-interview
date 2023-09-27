@@ -12,5 +12,3 @@ def pascal_triangle(n):
             else:
                 new_item.append(prev_item[i] + prev_item[i + 1])
         pascal.append(new_item)
-
-    print(pascal)

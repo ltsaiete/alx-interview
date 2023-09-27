@@ -1,4 +1,17 @@
+#!/usr/bin/python3
+""" returns a list of lists of integers representing the Pascals triangle of n
+    """
+
+
 def pascal_triangle(n):
+    """_summary_
+
+    Args:
+        n (_type_): _description_
+
+    Returns:
+        _type_: _description_
+    """
     if n <= 0:
         return []
     pascal = [[1]]
@@ -12,3 +25,5 @@ def pascal_triangle(n):
             else:
                 new_item.append(prev_item[i] + prev_item[i + 1])
         pascal.append(new_item)
+
+    return pascal

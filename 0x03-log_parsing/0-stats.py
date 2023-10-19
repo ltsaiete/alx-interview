@@ -17,6 +17,7 @@ INPUT_FORMAT = r'{} - \[{}\] "GET /projects/260 HTTP/1.1" {}? \d+'.format(
     STATUS_CODE_PATTERN
     )
 
+
 def getStatusAndFileSize(input_text):
     """Gets the status code and file size from input text
 
@@ -26,7 +27,7 @@ def getStatusAndFileSize(input_text):
     Returns:
         _type_: _description_
     """
-    if(re.match(INPUT_FORMAT, input_text)):
+    if re.match(INPUT_FORMAT, input_text):
         status_code = re.findall(STATUS_CODE_PATTERN, input_text)
         if not status_code:
             return None
@@ -36,9 +37,10 @@ def getStatusAndFileSize(input_text):
         file_size = re.findall(r'\d+', input_text)
         file_size = file_size[len(file_size) - 1]
 
-        return { 'status_code': status_code, 'file_size': int(file_size) }
+        return {'status_code': status_code, 'file_size': int(file_size)}
 
     return None
+
 
 def printLogData(log_dict, total_size):
     """_summary_
@@ -51,9 +53,11 @@ def printLogData(log_dict, total_size):
     for k, v in log_dict.items():
         print(f'{k}: {v}')
 
+
 count = 0
 log_dict = {}
 total_size = 0
+
 
 try:
     while True:
@@ -80,4 +84,3 @@ try:
 
 except KeyboardInterrupt:
     printLogData(log_dict, total_size)
-

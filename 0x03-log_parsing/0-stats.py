@@ -5,12 +5,17 @@ one function called fun_name
 """
 import re
 
-IP_PATTERN = r'^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)'
+OCTET = r'(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)'
+IP_PATTERN = r'^({}\.){3}'.format(OCTET, OCTET)
 DATE_PATTERN = r'\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{6}'
 STATUS_CODE_PATTERN = r'(200|301|400|401|403|404|405|500)'
 
 
-INPUT_FORMAT = r'{} - \[{}\] "GET /projects/260 HTTP/1.1" {}? \d+'.format(IP_PATTERN, DATE_PATTERN, STATUS_CODE_PATTERN)
+INPUT_FORMAT = r'{} - \[{}\] "GET /projects/260 HTTP/1.1" {}? \d+'.format(
+    IP_PATTERN,
+    DATE_PATTERN,
+    STATUS_CODE_PATTERN
+    )
 
 def getStatusAndFileSize(input_text):
     """Gets the status code and file size from input text

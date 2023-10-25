@@ -33,4 +33,4 @@ def validUTF8(data: List) -> bool:
                 return False
             n_bytes -= 1
 
-    return n_bytes == 0
+    return n_bytes >= 0 and n_bytes <= 3

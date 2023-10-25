@@ -16,10 +16,21 @@ def validUTF8(data: List) -> bool:
     Returns:
         bool: True if data is a valid UTF-8 encoding, else return False
     """
-    current_value = data.pop(0)
-    if current_value > 255:
-        return False
-    if len(data):
-        return True and validUTF8(data)
+    n_bytes = 0
 
-    return True
+    for num in data:
+        if n_bytes == 0:
+            if (num >> 5) == 0b110:
+                n_bytes = 1
+            elif (num >> 4) == 0b1110:
+                n_bytes = 2
+            elif (num >> 3) == 0b11110:
+                n_bytes = 3
+            elif (num >> 7):
+                return False
+        else:
+            if (num >> 6) != 0b10:
+                return False
+            n_bytes -= 1
+
+    return n_bytes == 0

@@ -42,12 +42,12 @@ def checkKeys(keys, open_boxes, boxes_count):
     Returns:
         _type_: _description_
     """
-    valid_keys = []
+    valid_keys = set()
     for key in keys:
         if key not in open_boxes and key < boxes_count:
-            valid_keys.append(key)
+            valid_keys.add(key)
 
-    return valid_keys
+    return list(valid_keys)
 
 
 def open(box):
